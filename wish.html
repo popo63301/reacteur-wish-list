@@ -4,15 +4,29 @@
     <title>Page Title</title>
 
     <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
 
   <body>
-    <div>
-      <h1>Wish list</h1>
-      <div class="wish">-> Playstation 4</div>
-    </div>
+    <div class="wish" id="wishList"><h1>Wish list</h1></div>
 
     <input class="wishInput" type="text" name="wishInput" />
     <button type="button">ADD</button>
   </body>
+
+  <script>
+    axios({
+      url: 'http://localhost:3000/listWishes',
+      method: 'get'
+    }).then(function(response) {
+      var element = document.getElementById('wishList');
+
+      for (let i = 0; i < response.data.length; i++) {
+        var div = document.createElement('DIV');
+        var t = document.createTextNode('-> ' + response.data[i].name);
+        div.appendChild(t);
+        element.appendChild(div);
+      }
+    });
+  </script>
 </html>
