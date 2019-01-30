@@ -10,8 +10,8 @@
   <body>
     <div class="wish" id="wishList"><h1>Wish list</h1></div>
 
-    <input class="wishInput" type="text" name="wishInput" />
-    <button type="button">ADD</button>
+    <input class="wishInput" type="text" name="wishInput" id="wishInput" />
+    <button type="button" onclick="addNewWish()">ADD</button>
   </body>
 
   <script>
@@ -28,5 +28,23 @@
         element.appendChild(div);
       }
     });
+
+    const addNewWish = () => {
+      const value = document.getElementById('wishInput').value;
+
+      axios({
+        url: 'http://localhost:3000/addWish',
+        method: 'post',
+        data: {
+          name: value
+        }
+      }).then(function(response) {
+        var element = document.getElementById('wishList');
+        var div = document.createElement('DIV');
+        var t = document.createTextNode('-> ' + value);
+        div.appendChild(t);
+        element.appendChild(div);
+      });
+    };
   </script>
 </html>
