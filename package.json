@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/popo63301/reacteur-wish-list#readme",
   "dependencies": {
-    "express": "^4.16.4"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.7"
   }
 }
